@@ -1,12 +1,16 @@
 import os
 from operator import itemgetter
 
-if not os.path.isfile("input.txt"):
-    print("Файла нетт!!!")
-    exit()
+def is_file_exist(f_path):
+    if not os.path.isfile(f_path):
+        print(f"Файла {f_path} нет")
+        exit()
+
+file_path = input("Введите путь до файла: ")
+is_file_exist(file_path)
 
 lines = []
-with open("input.txt", "r", encoding="UTF-8") as f:
+with open(file_path, "r", encoding="UTF-8") as f:
     lines = f.readlines()
 
 lines = list(map(lambda x: " ".join(x.split()).split(" "), lines))
@@ -22,5 +26,8 @@ except:
     print("Введите ЧИСЛОО!!!")
     exit()
 
+is_file_exist("res.txt")
+
+filtered_by_user = list(map(lambda x: f"{x[0]}\n" if int(x[1]) > inp else "", lines)) 
 with open("res.txt", "w", encoding="UTF-8") as f:
-    f.writelines((list(map(lambda x: f"{x[0]}\n" if int(x[1]) > inp else None, lines))))
+    f.writelines([f"Участники, балл которых выше {inp}\n", *filtered_by_user])
