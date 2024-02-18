@@ -1,3 +1,6 @@
+from pprint import pprint
+
+
 def mat_hypo(n):
     res = {"sequence": [], "seq_len": 0, "pique": n}
     while n != 1:
@@ -11,6 +14,7 @@ def mat_hypo(n):
             n = n * 3 + 1
     return res
 
+
 inp = input("Введите число N: ")
 
 try: 
@@ -19,4 +23,4 @@ except ValueError:
     print("Нужно ввести ЧИСЛО!!!")
     exit()
 
-print(mat_hypo(inp))
+pprint(mat_hypo(inp))

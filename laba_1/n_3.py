@@ -9,7 +9,6 @@ def is_file_exist(f_path):
 file_path = input("Введите путь до файла: ")
 is_file_exist(file_path)
 
-lines = []
 with open(file_path, "r", encoding="UTF-8") as f:
     lines = f.readlines()
 
@@ -22,7 +21,7 @@ print(f"Сортировка по баллам: {pts}")
 
 try:
     inp = int(input("Введите балл: "))
-except:
+except ValueError:
     print("Введите ЧИСЛОО!!!")
     exit()
 
