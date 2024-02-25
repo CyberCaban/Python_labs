@@ -26,7 +26,7 @@ except FileNotFoundError:
     exit("file not found")
 
 inflation_sort = sorted(countries, key=itemgetter("Inflation"))
-incomes = list(filter(lambda row: lower_income < float(row["Income"]) and higher_income > float(row["Income"]), countries))
+incomes = list(filter(lambda row: lower_income < float(row["Income"]) < higher_income, countries))
 
 write_csv("incomes.csv", headers, incomes)
 write_csv("sort_by_inflation.csv", headers, inflation_sort)
