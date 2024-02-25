@@ -15,10 +15,8 @@ def mat_hypo(n):
     return res
 
 
-inp = input("Введите число N: ")
-
 try: 
-    inp = int(inp)
+    inp = int(input("Введите число N: "))
 except ValueError:
     print("Нужно ввести ЧИСЛО!!!")
     exit()

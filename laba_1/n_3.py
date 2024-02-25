@@ -1,16 +1,13 @@
 import os
 from operator import itemgetter
 
-def is_file_exist(f_path):
-    if not os.path.isfile(f_path):
-        print(f"Файла {f_path} нет")
-        exit()
-
 file_path = input("Введите путь до файла: ")
-is_file_exist(file_path)
 
-with open(file_path, "r", encoding="UTF-8") as f:
-    lines = f.readlines()
+try:
+    with open(file_path, "r", encoding="UTF-8") as f:
+        lines = f.readlines()
+except FileNotFoundError:
+    exit("file not found")
 
 lines = list(map(lambda x: " ".join(x.split()).split(" "), lines))
 names = sorted(lines)
@@ -25,8 +22,9 @@ except ValueError:
     print("Введите ЧИСЛОО!!!")
     exit()
 
-is_file_exist("res.txt")
-
 filtered_by_user = list(map(lambda x: f"{x[0]}\n" if int(x[1]) > inp else "", lines)) 
-with open("res.txt", "w", encoding="UTF-8") as f:
-    f.writelines([f"Участники, балл которых выше {inp}\n", *filtered_by_user])
+try:
+    with open("res.txt", "w", encoding="UTF-8") as f:
+        f.writelines([f"Участники, балл которых выше {inp}\n", *filtered_by_user])
+except FileNotFoundError:
+    exit("file not found")
