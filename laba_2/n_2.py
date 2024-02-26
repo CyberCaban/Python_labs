@@ -14,16 +14,18 @@ try:
     lower_income = int(input("Enter lower income in range: "))
     higher_income = int(input("Enter higher income in range: "))
 except ValueError:
-    print("enter integer please!!!")
-    exit()
+    exit("enter integer please!!!")
+
+if not (lower_income < higher_income):
+    exit("enter valid range!!")
 
 try:
     with open("countries.csv", "r") as file:
         reader = csv.DictReader(file, delimiter=",", quoting=csv.QUOTE_NONNUMERIC)
         headers = reader.fieldnames
         countries = list(reader)
-except FileNotFoundError:
-    exit("file not found")
+except FileNotFoundError or csv.Error as err:
+    exit(f"Error: {err}")
 
 inflation_sort = sorted(countries, key=itemgetter("Inflation"))
 incomes = list(filter(lambda row: lower_income < float(row["Income"]) < higher_income, countries))

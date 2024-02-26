@@ -1,4 +1,3 @@
-import os
 from operator import itemgetter
 
 file_path = input("Введите путь до файла: ")

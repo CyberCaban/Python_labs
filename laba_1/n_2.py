@@ -21,4 +21,7 @@ except ValueError:
     print("Нужно ввести ЧИСЛО!!!")
     exit()
 
+if inp < 0:
+    exit("Введите натуральное число!!!")
+
 pprint(mat_hypo(inp))

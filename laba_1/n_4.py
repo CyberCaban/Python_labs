@@ -1,9 +1,7 @@
-import os
 import collections
-
+file_path = input("Enter path: ")
+lines = []
 try:
-    file_path = input("Enter path: ")
-    lines = []
     with open(file_path, "r", encoding="UTF-8") as f:
         lines = f.readlines()
 except FileNotFoundError:
