@@ -8,12 +8,10 @@ def is_dir(path):
         raise Exception(f"Dir {path} not found")
 
 try:
-    path_src = input("Enter path to src: ")
-    is_dir(path_src)
-    path_dst = input("Enter path to dst: ")
-    is_dir(path_dst)
+    is_dir(path_src := input("Enter path to src: "))
+    is_dir(path_dst := input("Enter path to dst: "))
 except Exception as inst:
-    exit(inst.args)
+    exit(inst)
 
 for curr_dir, _, files in os.walk(path_src):
     for file in files:
@@ -21,4 +19,6 @@ for curr_dir, _, files in os.walk(path_src):
         if os.path.splitext(file_path)[1] in img_ext:
             # TODO use move instead of copy
             shutil.copy(file_path, path_dst)
-            print(file)
+            # print(file)
+
+print(shutil.make_archive("python_archive", "zip", "dst"))
