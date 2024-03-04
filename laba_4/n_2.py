@@ -21,31 +21,31 @@ try:
 except FileNotFoundError as err:
     exit(err)
 
+cities = set()
 ordered_by_year = collections.defaultdict(list)
 for mar in marathones:
+    cities.add(mar["City"])
     ordered_by_year[mar["Year"]].append(mar)
 
-filtered = collections.defaultdict(list)
+# pprint(cities)
+
+filtered = collections.defaultdict(lambda: collections.defaultdict(list))
 for key, value in ordered_by_year.items():
-    try:
-        filtered[key].append(female_champ(value))
-    except ValueError:
-        pass
-    filtered[key].append(male_champ(value))
+    for champ in value:
+        for city in cities:
+            if champ["City"] == city:
+                filtered[key][city].append([champ["Sex"], champ["FullName"]])
     
-# pprint(filtered)
+pprint(filtered)
 
 pages = [] # {Year, City, WinnerMale: time, WinnerFemale: time}
-for k, v in filtered.items():
-    pages.append({
-        "Year": k,
-        "City": ", ".join(set(map(lambda x: x["City"], v))),
-        "WinnerMale": list(filter(lambda x: x["Sex"] == "Male", v)),
-        "WinnerFemale": list(filter(lambda x: x["Sex"] == "Female", v))
-    })
-pprint(pages)
-# print(temp)
+# for k, v in filtered.items():
+#     pages.append({
+#        "Year": k,
+        
+#     })
+# pprint(pages)
 
 template = DocxTemplate("template.docx")
-template.render({"pages": pages})
+template.render({"pages": filtered})
 template.save("res.docx")
