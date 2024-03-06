@@ -1,6 +1,7 @@
 import csv
 from operator import itemgetter
 
+
 def write_csv(file_name: str, headers: list, data: list) -> None:
     try:
         with open(file_name, "w", newline="") as file:
@@ -9,6 +10,7 @@ def write_csv(file_name: str, headers: list, data: list) -> None:
             writer.writerows(data)
     except FileNotFoundError:
         exit("file not found")
+
 
 try:
     lower_income = int(input("Enter lower income in range: "))

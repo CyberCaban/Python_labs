@@ -1,8 +1,4 @@
-import os
 from pprint import pprint
-import shutil
-import collections
-from math import ceil, trunc, isfinite, fabs, pi, pow, floor, cos, sqrt
-from random import randint, choice, seed
+from math import ceil, fabs, pow, isfinite, trunc, sqrt, pi, floor, cos
+from random import choice, randint, seed
 from datetime import datetime
-import datetime_truncate

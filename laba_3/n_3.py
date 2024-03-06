@@ -3,9 +3,11 @@ import shutil
 
 img_ext = [".jpg", ".png"]
 
+
 def is_dir(path):
     if not os.path.isdir(path):
         raise Exception(f"Dir {path} not found")
+
 
 try:
     is_dir(path_src := input("Enter path to src: "))
