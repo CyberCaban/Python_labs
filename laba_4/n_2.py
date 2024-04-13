@@ -4,17 +4,6 @@ from pprint import pprint
 from docxtpl import DocxTemplate
 import csv
 
-
-def female_champ(value: list) -> dict:
-    females = list(filter(lambda x: x["Sex"] == "Female", value))
-    return min(females, key=itemgetter("Time"))
-
-
-def male_champ(value: list) -> dict:
-    males = list(filter(lambda x: x["Sex"] == "Male", value))
-    return min(males, key=itemgetter("Time"))
-
-
 try:
     with open("data_marathon.csv", "r") as f:
         reader = csv.DictReader(f, delimiter=",", quoting=csv.QUOTE_ALL)
