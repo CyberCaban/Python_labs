@@ -11,23 +11,25 @@ def non_unique_chars(s: str) -> int:
 
 
 test_pairs = [
-    ("", 0),
-    ("lorem", 0),
-    ("bunny", 1),
-    ("aba", 1),
-    ("abba", 2),
-    ("abcd", 0),
-    ("abcc", 1),
-    ("ab", 0),
-    ([111,2], None),
-    ({34,2}, None),
-    (False, None),
-    (True, None),
-    (1, None),
-    (0, None),
-    (None, None),
-    ((123124, 123123), None)
-]
+ ("", 0),
+ ("lorem", 0),
+ ("bunny", 1),
+ ("aba", 1),
+ ("abba",
+2),
+ ("abcd", 0),
+ ("abcc", 1),
+ ("ab", 0),
+ ([111,2], None),
+ ({34,2}, None),
+(False, None),
+ (True, None),
+ (1, None),
+ (0, None),
+ (None, None),
+ ((123124,
+123123), None)
+ ]
 
 def test_non_unique_chars():
     for args, correct_res in test_pairs:
