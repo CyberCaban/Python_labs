@@ -14,9 +14,12 @@ def handle_input(msg: str = "Enter value: ") -> int:
         exit("enter integer please!!!")
 
 
-with open("data_tallest_buildings.csv", "r") as f:
-    reader = csv.DictReader(f, delimiter=",")
-    data = list(reader)
+try:
+    with open("data_tallest_buildings.csv", "r") as f:
+        reader = csv.DictReader(f, delimiter=",")
+        data = list(reader)
+except FileNotFoundError:
+    exit("no file")
 
 df = pd.DataFrame(data)
 df = df.astype(
@@ -37,6 +40,7 @@ lowest = df.sort_values("height_m", ascending=True).head(5)
 max_height = height.max()
 min_height = height.min()
 median_height = height.median()
+mid_height = height.sum() / len(height)
 num_of_countries = len(set(df["country"]))
 newest_building = df.loc[year == year.max()]
 oldest_building = df.loc[year == year.min()]
