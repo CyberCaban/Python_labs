@@ -3,10 +3,13 @@ from collections import Counter
 import csv
 import numpy as np
 
-with open("udemy_courses.csv", "r") as csvfile:
-    reader = csv.DictReader(csvfile, delimiter=",")
-    courses = list(reader)
-    headers = reader.fieldnames
+try:
+    with open("udemy_courses.csv", "r") as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=",")
+        courses = list(reader)
+        headers = reader.fieldnames
+except FileNotFoundError:
+    exit("NO file")
 
 
 prices = list(map(int, map(itemgetter("price"), courses)))
@@ -21,6 +24,7 @@ levels = Counter()
 for lvl in lvls:
     levels[lvl] += 1
 levels = max(levels, key=levels.get)
+
 print("Median: ", median)
 print("Min sub: ", min_sub)
 print("Max dur: ", max_dur)
